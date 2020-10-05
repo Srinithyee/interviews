@@ -10,49 +10,34 @@
 //   [-1, -1, 2]
 // ]
 
-public class 3Sum {
-    public List<List<Integer>> threeSum(int[] nums) {
-        List<List<Integer>>  result = new ArrayList<>();
+class Solution {
+public List<List> threeSum(int[] arr) {
+
+    Arrays.sort(arr); 
+    Set<List<Integer >>  map = new HashSet<>();
+    int k =arr.length-1;
+    
+    for(int i=0; i<arr.length-2 ; i++){
+      int j = i+1;
+       k = arr.length-1;
         
-        Arrays.sort(nums);
+    while(j<k){
+     int sum = arr[j]+arr[k];
         
-        for(int i = 0; i < nums.length - 2; i++) {
-            if(i > 0 && nums[i] == nums[i - 1]) {
-                continue;
-            }
-            
-            int j = i + 1;
-            int k = nums.length - 1;
-            int target = -nums[i];
-            
-            while(j < k) {
-                if(nums[j] + nums[k] == target) {
-                    ArrayList<Integer> temp = new ArrayList<Integer>();
-                    
-                    temp.add(nums[i]);
-                    temp.add(nums[j]);
-                    temp.add(nums[k]);
-                    
-                    result.add(temp);
-                    
-                    j++;
-                    k--;
-                    
-                    while(j < k && nums[j] == nums[j - 1]) {
-                        j++;
-                    }
-                    
-                    while(j < k && nums[k] == nums[k + 1]) {
-                        k--;
-                    }
-                } else if(nums[j] + nums[k] > target) {
-                    k--;
-                } else {
-                    j++;
-                }
-            }
+         if(sum == -arr[i]){
+            map.add(Arrays.asList(arr[i], arr[j], arr[k]));
+            j++;
+            k--;
         }
         
-        return result;
-    }
+        else if(sum < -arr[i])
+                j++;
+        
+        else if(sum > -arr[i])
+                k--;
+        
+    }  
+}
+     return new ArrayList<>(map);
+}
 }
