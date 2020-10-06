@@ -5,22 +5,12 @@
 // Follow up:
     // Could you do this in-place?
 
-public class RotateImage {
-    public void rotate(int[][] matrix) {
-        for(int i = 0; i < matrix.length; i++) {
-            for(int j = 0; j < i; j++) {
-                int temp = matrix[i][j];
-                matrix[i][j] = matrix[j][i];
-                matrix[j][i] = temp;
-            }
-        }
+#First do the transpose of the matrix and then reverse it.
+
+for row in range(len(matrix[0])):
+    for col in range(row,len(matrix[0])):
+        matrix[row][col],matrix[col][row] = matrix[col][row],matrix[row][col]
         
-        for(int i = 0; i < matrix.length; i++) {
-            for(int j = 0; j < matrix[0].length / 2; j++) {
-                int temp = matrix[i][j];
-                matrix[i][j] = matrix[i][matrix[0].length - 1 - j];
-                matrix[i][matrix[0].length - 1 - j] = temp;
-            }
-        }
-    }
-}
+for i in matrix:
+    i.reverse()
+return matrix
