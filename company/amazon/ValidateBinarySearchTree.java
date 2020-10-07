@@ -32,6 +32,7 @@ public class ValidateBinarySearchTree {
         }
         
         return validBSTRecursive(root, Long.MIN_VALUE, Long.MAX_VALUE);
+        
     }
     
     public boolean validBSTRecursive(TreeNode root, long minValue, long maxValue) {
