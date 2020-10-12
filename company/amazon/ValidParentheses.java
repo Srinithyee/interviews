@@ -27,3 +27,4 @@ public class ValidParentheses {
         return stack.isEmpty();
     }
 }
+
