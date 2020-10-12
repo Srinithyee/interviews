@@ -1,44 +1,16 @@
-// Given a set of distinct integers, nums, return all possible subsets.
-
-// Note: The solution set must not contain duplicate subsets.
-
-// For example,
-// If nums = [1,2,3], a solution is:
-
-// [
-//   [3],
-//   [1],
-//   [2],
-//   [1,2,3],
-//   [1,3],
-//   [2,3],
-//   [1,2],
-//   []
-// ]
-
-public class Subsets {
-    public List<List<Integer>> subsets(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
+class Solution:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        res = [[]]
+        for num in sorted(nums):
+            res += [curr + [num] for curr in res]
+        res_set = set(tuple(x) for x in res) #need to convert the inner lists to tuples so they are hashable
+        return [list(x) for x in res_set] #Now convert tuples back into lists
         
-        recurse(result, nums, new Stack<>(), 0);
+       
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res = [[]]
         
-        return result;
-    }
-    
-    
-    private void recurse(List<List<Integer>> result, int[] nums, Stack path, int position) {
-        if(position == nums.length) {
-            result.add(new ArrayList<>(path));
-
-            return;
-        }
-        
-        path.push(nums[position]);
-
-        recurse(result, nums, path, position + 1);
-        
-        path.pop();
-        
-        recurse(result, nums, path, position + 1);
-    }
-}
+        for num in nums:
+            res += [i + [num] for i in res]
+        return res
