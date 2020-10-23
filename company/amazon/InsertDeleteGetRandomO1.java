@@ -71,6 +71,7 @@ class RandomizedSet {
     }
 }
 
+
 /**
  * Your RandomizedSet object will be instantiated and called as such:
  * RandomizedSet obj = new RandomizedSet();
