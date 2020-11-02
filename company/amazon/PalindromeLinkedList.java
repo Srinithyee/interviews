@@ -7,34 +7,44 @@
  * }
  */
 public class PalindromeLinkedList {
-    public boolean isPalindrome(ListNode head) {
-        if(head == null || head.next == null) {
+    public boolean isPalindrome(ListNode head)
+    {
+        if(head == null || head.next == null) 
+        {
             return true;
         }
         
-        Stack<Integer> stack = new Stack<Integer>();
-        
+        ListNode slow =head;
         ListNode fast = head;
-        ListNode slow = head;
-
-        while(fast != null && fast.next != null) {
-            stack.push(slow.val);
-            fast = fast.next.next;
-            slow = slow.next;
+        
+        while( fast.next != null && fast.next.next != null)
+        {
+            fast= fast.next.next;
+            slpw = slow.next;
         }
         
-        if(fast != null) {
-            slow = slow.next;
-        }
+        ListNode HeadSecondHalf = reverse(slow.next);
+        ListNode HeadFirstHalf = head;
         
-        while(slow != null) {
-            if(stack.pop() != slow.val) {
+        while (HeadSecondHalf != null && HeadFirstHalf != null)
+        {
+            if(HeadFirstHalf.val != HeadSecondHalf.va;l)
                 return false;
-            }
-
-            slow = slow.next;
         }
-        
-        return true;
+        return true
+    }
+
+    public ListNode reverse (ListNode head)
+    {
+        ListNode result = new ListNode();
+        while(head != null)
+        {
+            ListNode next = head.next;
+            head.next = result;
+            result = head;
+            head = next;
+        }
+        return result;
     }
 }
+        
