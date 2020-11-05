@@ -26,33 +26,38 @@
 
 public class PacificAtlanticWaterFlow {
     public List<int[]> pacificAtlantic(int[][] matrix) {
-        List<int[]> result = new LinkedList<>();
-        
-        //error checking
-        if(matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+        List <int []> result = new LinkedList<>();
+         
+        if (matrix.length ==0 || matrix = 0 || matrix[0].length ==0)
+        {
             return result;
         }
         
-        int n = matrix.length;
-        int m = matrix[0].length;
+        int m = matrix.length;
+        int n = matrix[0].length;
         
-        boolean[][] pacific = new boolean[n][m];
-        boolean[][] atlantic = new boolean[n][m];
+        boolean pacific [][] = new boolean [m][n];
+        boolean atlantic [][] = new boolean [m][n];
         
-        for(int i = 0; i < n; i++) {
-            dfs(matrix, pacific, Integer.MIN_VALUE, i, 0);
-            dfs(matrix, atlantic, Integer.MIN_VALUE, i, m - 1);
+        for (i=0;i<m;i++)
+        {
+            dfs(matrix, pacific, INT.MIN_VALUE,0,i);
+            dfs(matrix, atlantic, INT.MIN_VALUE,i,n-1);
         }
         
-        for(int i = 0; i < m; i++) {
-            dfs(matrix, pacific, Integer.MIN_VALUE, 0, i);
-            dfs(matrix, atlantic, Integer.MIN_VALUE, n - 1, i);
+        for (i=0;i<n;i++)
+        {
+            dfs(matrix, pacific, INT.MIN_VALUE,i,0);
+            dfs(matrix, atlantic, INT.MIN_VALUE, m-1,i);
         }
         
-        for(int i = 0; i < n; i++) {
-            for(int j = 0; j < m; j++) {
-                if(pacific[i][j] && atlantic[i][j]) {
-                    result.add(new int[] {i, j});
+        for(i=0;i<m;i++)
+        {
+            for(j=0;j<n;j++)
+            {
+                if(pacific[i][j] && atlantic[i][j])
+                {
+                    result.add(new int[] {i,j});
                 }
             }
         }
@@ -60,19 +65,23 @@ public class PacificAtlanticWaterFlow {
         return result;
     }
     
-    public void dfs(int[][] matrix, boolean[][] visited, int height, int x, int y) {
-        int n = matrix.length;
-        int m = matrix[0].length;
-        
-        if(x < 0 || x >= n || y < 0 || y >= m || visited[x][y] || matrix[x][y] < height) {
+    public int dfs( int matrix[][], boolean ocean[][], int height, int x,int y)
+    {
+        int m = matrix.length;
+        int n = matrix[0].length;
+        while ( x<0 || x>m || y<0 || y>n || matrix[x][y] < height || ocean [x][y])
+        {
             return;
         }
         
-        visited[x][y] = true;
+        ocean[x][y] = true;
         
-        dfs(matrix, visited, matrix[x][y], x + 1, y);
-        dfs(matrix, visited, matrix[x][y], x - 1, y);
-        dfs(matrix, visited, matrix[x][y], x, y + 1);
-        dfs(matrix, visited, matrix[x][y], x, y - 1);
+        dfs(matrix, ocean,matrix[x][y], x-1,y);
+        dfs(matrix, ocean,matrix[x][y], x+1,y);
+        dfs(matrix, ocean,matrix[x][y], x,y-1);
+        dfs(matrix, ocean,matrix[x][y], x,y+1);
     }
 }
+             
+                  
+    
