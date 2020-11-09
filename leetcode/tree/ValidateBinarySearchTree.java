@@ -27,20 +27,23 @@
  */
 public class ValidateBinarySearchTree {
     public boolean isValidBST(TreeNode root) {
-        if(root == null) {
-            return true;
-        }
         
-        return validBSTRecursive(root, Long.MIN_VALUE, Long.MAX_VALUE);
+        if (root == null)
+                return null;
+        
+        return helper(root, long.MIN_VAL, long.MAX_VAL);
     }
     
-    public boolean validBSTRecursive(TreeNode root, long minValue, long maxValue) {
-        if(root == null) {
-            return true;
-        } else if(root.val >= maxValue || root.val <= minValue) {
+    public boolean helper(root, long min, long max)
+    {
+        if (root == null)
+                return true;
+        
+        if(root.val <=min || root.val >= max)
             return false;
-        } else {
-            return validBSTRecursive(root.left, minValue, root.val) && validBSTRecursive(root.right, root.val, maxValue);
-        }
+        
+        return helper(root.right, root.val, max) && helper(root.left, min, root.val);
     }
 }
+
+
