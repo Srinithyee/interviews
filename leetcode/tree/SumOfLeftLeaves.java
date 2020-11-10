@@ -21,22 +21,17 @@
  */
 public class SumOfLeftLeaves {
     public int sumOfLeftLeaves(TreeNode root) {
-        if(root == null) {
+        if(root == null)
             return 0;
+        total =0;
+        if(root.left!=null)
+        {
+            if(root.left.left != null && root.left!=null)
+                total+ =root.left.val;
+            else
+                sumOfLeftLeaves(root.left);
         }
         
-        int total = 0;
-        
-        if(root.left != null) {
-            if(root.left.left == null && root.left.right == null) {
-                total += root.left.val;
-            } else {
-                total += sumOfLeftLeaves(root.left);
-            }
-        }
-        
-        total += sumOfLeftLeaves(root.right);
-        
-        return total;
+        total+=sumOfLeftLeaves(root.right);
     }
 }
