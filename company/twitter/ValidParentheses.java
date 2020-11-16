@@ -6,6 +6,7 @@ public class ValidParentheses {
     public boolean isValid(String s) {
         if(s.length() % 2 == 1) {
             return false;
+            
         }
         
         Stack<Character> stack = new Stack<Character>();
