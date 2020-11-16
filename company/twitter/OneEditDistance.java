@@ -23,3 +23,4 @@ public class OneEditDistance {
         return Math.abs(s.length() - t.length()) == 1;
     }
 }
+
