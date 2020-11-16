@@ -10,19 +10,18 @@
  */
 public class ReverseLinkedList {
     public ListNode reverseList(ListNode head) {
-        if(head == null) {
+        if (head == null)
             return head;
-        }
-    
-        ListNode newHead = null;
         
-        while(head != null) {
+        ListNode newhead = null;
+        while(head!= null)
+        {
             ListNode next = head.next;
-            head.next = newHead;
-            newHead = head;
-            head = next;
+            head.next = newhead;
+            newhead=head;
+            head= next;
         }
         
-        return newHead;
+        return newhead;
     }
 }
