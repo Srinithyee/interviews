@@ -28,6 +28,7 @@ public class MergeKSortedLists {
         });
 
         ListNode dummy = new ListNode(0);
+        
         ListNode tail=dummy;
 
         for (ListNode node:lists) {
